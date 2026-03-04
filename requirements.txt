@@ -2,5 +2,4 @@ fastapi
 uvicorn
 pandas
 matplotlib
-statsmodels
-scipy                                                                                                                                                                                            numpy
+statsmodels                                                                                                                                                                                          numpy
