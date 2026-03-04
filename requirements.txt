@@ -1,5 +1,4 @@
 fastapi
 uvicorn
 pandas
-matplotlib
-statsmodels                                                                                                                                                                                          numpy
+matplotlib                                                                                                                                                                                          numpy
