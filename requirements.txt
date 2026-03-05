@@ -5,3 +5,6 @@ matplotlib==3.10.3
 scipy==1.15.3
 statsmodels==0.14.6
 numpy
+fsspec==2026.2.0
+requests==2.32.4
+
