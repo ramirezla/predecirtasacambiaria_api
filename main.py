@@ -1,7 +1,7 @@
 import os
 import sys
 from fastapi import FastAPI, HTTPException, Depends, Security
-from fastapi.security.api_key import APIKeyHeader
+from fastapi.security.api_key import APIKeyHeader, APIKeyQuery
 from datetime import datetime
 import pandas as pd
 
@@ -21,10 +21,17 @@ API_KEY_NAME = "X-API-KEY"
 API_KEY_VALUE = os.getenv("PREDICCION_API_KEY", "Vzla_2026_Secure_Key_99")
 
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+api_key_query = APIKeyQuery(name="api_key", auto_error=False)
 
-async def validar_api_key(api_key: str = Depends(api_key_header)):
-    if api_key == API_KEY_VALUE:
-        return api_key
+async def validar_api_key(
+    api_key_header: str = Security(api_key_header),
+    api_key_query: str = Security(api_key_query)
+):
+    if api_key_header == API_KEY_VALUE:
+        return api_key_header
+    if api_key_query == API_KEY_VALUE:
+        return api_key_query
+        
     raise HTTPException(
         status_code=403,
         detail="Acceso denegado: API Key inválida o ausente"
